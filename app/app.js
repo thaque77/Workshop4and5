@@ -1,6 +1,7 @@
-
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Feed from './components/feed';
+import { IndexRoute, Router, Route, browserHistory } from 'react-router'
 
 class Feed extends React.Component {
   render() {
@@ -150,7 +151,12 @@ class Feed extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <Feed />,
-  document.getElementById('fb-feed')
-);
+ReactDOM.render((
+  <Router history={browserHistory}>
+    <Route path="/" component={App}>
+      {/* Show the Feed at / */}
+      <IndexRoute component={FeedPage} />
+      <Route path="profile/:id" component={ProfilePage} />
+    </Route>
+  </Router>
+),document.getElementById('fb-feed'));
